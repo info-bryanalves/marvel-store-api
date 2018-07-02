@@ -12,7 +12,7 @@ class MarvelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getCharacters()
+    public function getAll()
     {
         $ts = time();
         $privateKey = '5bb59e1411546f36cadd64f118f8ebc64d505338';

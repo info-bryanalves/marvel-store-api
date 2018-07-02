@@ -20,15 +20,20 @@ class PaymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function registerPayment(Request $request)
+    public function register(Request $request)
     {
         \Stripe\Stripe::setApiKey("sk_test_gLATv8KZlyjRXxhTP8qQjg3P");
 
+        $amount = str_replace('.','', $request->amount);
+        $amount .= '0';
+
         $charge = \Stripe\Charge::create([
-            'amount' => $request->total,
+            'amount' => $amount,
             'currency' => 'usd',
-            'source' => $request->stripeToken,
-            'receipt_email' => 'jenny.rosen@example.com',
+            'source' => $request->token,
+            'receipt_email' => $request->receipt_email,
         ]);
+
+        return response()->json($charge);
     }
 }
