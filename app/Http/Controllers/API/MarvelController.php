@@ -12,7 +12,7 @@ class MarvelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getCharacters()
     {
         $ts = time();
         $privateKey = '5bb59e1411546f36cadd64f118f8ebc64d505338';
@@ -23,6 +23,8 @@ class MarvelController extends Controller
             'ts' => $ts,
             'apikey' => $apiKey,
             'hash' => $hash,
+            'offset' => 0,
+            'limit' => 10,
         ]);
 
         $options = array('http' =>
@@ -35,17 +37,18 @@ class MarvelController extends Controller
         $streamContext = stream_context_create($options);
         $result = file_get_contents('http://gateway.marvel.com/v1/public/characters?' . $query, null, $streamContext);
 
-        return response()->json(json_decode($result,1));
-    }
+        $data = json_decode($result,1);
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+        $data['data']['results'] = array_map(function($array) {
+            $array['price'] = mt_rand(10 * 10, 100 * 10) / 10;
+            return $array;
+        },$data['data']['results']);
+
+        $response = [];
+        foreach ($data['data']['results'] as $result) {
+            $response[$result['id']] = $result;
+        }
+
+        return response()->json($response);
     }
 }
