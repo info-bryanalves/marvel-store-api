@@ -12,8 +12,13 @@ Sistema de pagamento: https://stripe.com/
 
 ##### Build Setup
 ``` bash
-- git clone https://github.com/info-bryanalves/marvel-store-api.git
-- cd marvel-store-api
-- composer install
-- php artisan serve
+# Baixar projeto
+git clone https://github.com/info-bryanalves/marvel-store-api.git
+
+# Instalar dependências
+cd marvel-store-api
+composer install
+
+# Rodar projeto
+php artisan serve
 ```
