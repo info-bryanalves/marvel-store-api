@@ -22,3 +22,6 @@ composer install
 # Rodar projeto
 php artisan serve
 ```
+#### Observação
+Este projeto roda junta ao projeto: <a href="https://github.com/info-bryanalves/marvel-store-app">Marvel Store APP</a>.
+Então será necessário baixar os dois projetos, para o funcionamento da aplicação.
