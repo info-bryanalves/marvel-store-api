@@ -3,8 +3,8 @@
 ##### Descrição
 Back-End de uma mini loja virtual dos personagens da marvel, com integração com o sistema de pagamento de pagamento Stripe.
 
-#####Tecnologia utilizada
-Laravel
+##### Tecnologia utilizada
+Laravel 5.6
 
 ##### API's utilizadas
 Personagens: https://developer.marvel.com/
